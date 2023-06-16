@@ -20,7 +20,36 @@
         <div>状況：</div>
         <div class="status"></div>
     </div>
+    <style>
+        @media only screen and (device-width: 390px){
+            body {
+                margin-top: 40px;
+            }
 
+            div {
+                text-align: center;
+                font-size: 24px;
+            }
+
+            input[type="text"] {
+                font-size: 24px;
+                width: 80%;
+                margin-bottom: 10px;
+            }
+
+            button {
+                font-size: 24px;
+                padding: 10px 20px;
+                margin-bottom: 20px;
+            }
+
+            .damage,
+            .afterHp,
+            .status {
+                font-size: 24px;
+            }
+        }
+    </style>
     <script>
         let hp = 0.0;
         let num = 0;
