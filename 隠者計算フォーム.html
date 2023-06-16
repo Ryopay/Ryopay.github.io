@@ -1,0 +1,56 @@
+<html>
+<head style="text-align: center; font-size: x-large;">
+    <title>隠者ダメージ計算フォーム</title>
+</head>
+<body style="margin-top: 20px;">
+    <div>現在の体力</div>
+    <input id="hpInput" type="text" onchange="hpInput()" />
+    <div>つながっている人数</div>
+    <input id="numInput" type="text" onchange="numInput()" />
+    <button onclick="handleButton()">結果表示</button>
+    <div style="display: flex;">
+        <div>ダメージ：</div>
+        <div class="damage"></div>
+    </div>
+    <div style="display: flex;">
+        <div>体力：</div>
+        <div class="afterHp"></div>
+    </div>
+    <div style="display: flex;">
+        <div>状況：</div>
+        <div class="status"></div>
+    </div>
+
+    <script>
+        let hp = 0.0;
+        let num = 0;
+        let damage = 0.0;
+        let afterHp = 0.0;
+
+        function hpInput() {
+            let input = document.getElementById("hpInput");
+            hp = parseFloat(input.value);
+        }
+
+        function numInput() {
+            let input = document.getElementById("numInput");
+            num = parseInt(input.value);
+        }
+
+        function handleButton() {
+            let d = document.getElementsByClassName("damage");
+            let a = document.getElementsByClassName("afterHp");
+            let s = document.getElementsByClassName("status");
+            damage = 1.2 / num;
+            d[0].textContent = damage.toFixed(1);
+            afterHp = hp + damage;
+            a[0].textContent = afterHp.toFixed(1);
+            if (afterHp <= 2.0) {
+                s[0].textContent = "生存";
+            } else {
+                s[0].textContent = "ダウン";
+            }
+        }
+    </script>
+</body>
+</html>
