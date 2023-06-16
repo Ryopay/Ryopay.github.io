@@ -21,6 +21,37 @@
         <div class="status"></div>
     </div>
 
+    <style>
+        @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3) {
+            /* iPhone X */
+            body {
+                margin-top: 40px;
+            }
+
+            div {
+                text-align: center;
+                font-size: 24px;
+            }
+
+            input[type="text"] {
+                font-size: 24px;
+                width: 80%;
+                margin-bottom: 10px;
+            }
+
+            button {
+                font-size: 24px;
+                padding: 10px 20px;
+                margin-bottom: 20px;
+            }
+
+            .damage,
+            .afterHp,
+            .status {
+                font-size: 24px;
+            }
+        }
+    </style>
     <script>
         let hp = 0.0;
         let num = 0;
