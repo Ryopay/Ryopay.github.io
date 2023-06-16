@@ -1,11 +1,12 @@
 <html>
 <body style="margin-top: 20px;">
-    <div style="font-size: x-large;">・隠者ダメージ計算</div>
+    <div style="font-size: xx-large; font-weight: bold;">・隠者ダメージ計算</div>
     <div>現在の体力</div>
+
     <input id="hpInput" type="text" onchange="hpInput()" />
     <div>つながっている人数</div>
     <input id="numInput" type="text" onchange="numInput()" />
-    <button onclick="handleButton()">結果表示</button>
+    <button onclick="handleButtonInzya()">結果表示</button>
     <div style="display: flex;">
         <div>ダメージ：</div>
         <div class="damage"></div>
@@ -25,26 +26,24 @@
             }
 
             div {
-                text-align: center;
-                font-size: 24px;
+                font-size:large;
             }
 
             input[type="text"] {
-                font-size: 24px;
-                width: 80%;
-                margin-bottom: 10px;
+                font-size: large;
+                width: 60%;
+                padding: 40px;
             }
 
             button {
-                font-size: 24px;
-                padding: 10px 20px;
-                margin-bottom: 20px;
+                font-size: large;
+                padding: 50px 30px;
             }
 
             .damage,
             .afterHp,
             .status {
-                font-size: 24px;
+                font-size: large;
             }
         }
     </style>
@@ -64,7 +63,7 @@
             num = parseInt(input.value);
         }
 
-        function handleButton() {
+        function handleButtonInzya() {
             let d = document.getElementsByClassName("damage");
             let a = document.getElementsByClassName("afterHp");
             let s = document.getElementsByClassName("status");
