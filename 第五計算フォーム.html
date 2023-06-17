@@ -21,6 +21,7 @@
     </div>
     
     <div class="index" style="font-size: large; font-weight: bold;">・ジョゼフ写真崩壊ダメージ計算</div>
+    <div style="color: red; font-size: small;">※実際のゲームでどこで四捨五入または切り上げ切り捨てが行われているか分かりません</div>
     <div>表世界の体力</div>
     <input id="frontHp" type="text" onchange="frontHpInput()" />
     <div>裏世界の体力</div>
@@ -44,6 +45,7 @@
         <div class="zyozefuSatus"></div>
     </div>
     <div class="heelAfterHp"></div>
+    <div class="heelAfterDamageHp"></div>
     <div class="heelAfterSatus"></div>
     
     <style>
@@ -118,6 +120,7 @@
         let zyozefuDamage = 0.0;
         let atkDamage = 0.0;
         let heelAfterHp = 0.0;
+        let heelAfterDamageHp = 0.0;
 
         function frontHpInput() {
             let input = document.getElementById("frontHp");
@@ -126,8 +129,8 @@
 
         function backHpInput() {
             let input = document.getElementById("backHp");
-            backHp = parseInt(input.value);           
-        }
+            backHp = parseFloat(input.value);           
+        }       
 
         function handleButtonZyozefu() {
             let c = document.getElementsByClassName("collapseDamage");
@@ -135,20 +138,21 @@
             let a = document.getElementsByClassName("atkDamage");
             let s = document.getElementsByClassName("zyozefuSatus");
             let hh = document.getElementsByClassName("heelAfterHp");
+            let hd = document.getElementsByClassName("heelAfterDamageHp");
             let hs = document.getElementsByClassName("heelAfterSatus");
 
             if(frontHp>backHp){
                 c[0].textContent = "0";
-                d[0].textContent = frontHp.toFixed(2);
+                d[0].textContent = frontHp;
                 atkDamage = frontHp + 1.50;
-                a[0].textContent = atkDamage.toFixed(2);
+                a[0].textContent = atkDamage;
             }else{
                 collapseDamage = (backHp - frontHp) / 2;
                 c[0].textContent = collapseDamage;
                 zyozefuDamage = frontHp + collapseDamage;
-                d[0].textContent = zyozefuDamage.toFixed(2);
+                d[0].textContent = zyozefuDamage;
                 atkDamage = zyozefuDamage + 1.50;
-                a[0].textContent = atkDamage.toFixed(2);
+                a[0].textContent = atkDamage;
             }
 
             if (atkDamage <= 2.0) {
@@ -157,11 +161,13 @@
                 s[0].textContent = "ダウン";
             }
             
-            if(zyozefuDamage > 1.0){
-                heelAfterHp = zyozefuDamage - 1.0 + 1.5;
-                hh[0].textContent = "写真崩壊後回復して殴られた場合のhp：" + heelAfterHp;
+            if(zyozefuDamage >= 1.0){
+                heelAfterHp = zyozefuDamage - 1.0;
+                hd[0].textContent = "写真崩壊後回復した場合のhp：" + heelAfterHp;
+                heelAfterDamageHp = heelAfterDamageHp + 1.5;
+                hd[0].textContent = "回復して殴られた場合のhp：" + heelAfterDamageHp;
 
-                if (heelAfterHp <= 2.0) {
+                if (heelAfterDamageHp <= 2.0) {
                     hs[0].textContent = "状況：生存";
                 } else {
                     hs[0].textContent = "状況：ダウン";
