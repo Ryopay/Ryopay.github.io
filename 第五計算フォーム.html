@@ -106,7 +106,7 @@
             d[0].textContent = damage.toFixed(1);   
             afterHp = hp + damage;
             a[0].textContent = afterHp.toFixed(1);
-            if (afterHp <= 2.0) {
+            if (afterHp < 2.0) {
                 s[0].textContent = "生存";
             } else {
                 s[0].textContent = "ダウン";
@@ -155,7 +155,7 @@
                 a[0].textContent = atkDamage;
             }
 
-            if (atkDamage <= 2.0) {
+            if (atkDamage < 2.0) {
                 s[0].textContent = "生存";
             } else {
                 s[0].textContent = "ダウン";
@@ -164,10 +164,10 @@
             if(zyozefuDamage >= 1.0){
                 heelAfterHp = zyozefuDamage - 1.0;
                 hh[0].textContent = "写真崩壊後回復した場合のhp：" + heelAfterHp;
-                heelAfterDamageHp = heelAfterDamageHp + 1.5;
+                heelAfterDamageHp = heelAfterHp + 1.5;
                 hd[0].textContent = "回復して殴られた場合のhp：" + heelAfterDamageHp;
 
-                if (heelAfterDamageHp <= 2.0) {
+                if (heelAfterDamageHp < 2.0) {
                     hs[0].textContent = "状況：生存";
                 } else {
                     hs[0].textContent = "状況：ダウン";
