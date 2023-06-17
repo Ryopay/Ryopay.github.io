@@ -43,6 +43,9 @@
         <div>状況：</div>
         <div class="zyozefuSatus"></div>
     </div>
+    <div>回復して殴られた場合のhp：</div>
+    <div class="heelAfterHp"></div>
+    <div class="heelAfterSatus"></div>
     
     <style>
         @media only screen and (device-width: 390px){
@@ -83,15 +86,7 @@
         let num = 0;
         let damage = 0.0;
         let afterHp = 0.0;
-        
-        //ジョゼフ用
-        let frontHp = 0.0;
-        let backHp = 0.0;
-        let collapseDamage = 0.0; 
-        let zyozefuDamage = 0.0;
-        let atkDamage = 0.0;
 
-        //隠者用
         function hpInput() {
             let input = document.getElementById("hpInput");
             hp = parseFloat(input.value);
@@ -117,8 +112,14 @@
             }
         }
         
-
         //ジョゼフ用
+        let frontHp = 0.0;
+        let backHp = 0.0;
+        let collapseDamage = 0.0; 
+        let zyozefuDamage = 0.0;
+        let atkDamage = 0.0;
+        let heelAfterHp = 0.0;
+
         function frontHpInput() {
             let input = document.getElementById("frontHp");
             frontHp = parseFloat(input.value);
@@ -134,6 +135,8 @@
             let d = document.getElementsByClassName("zyozefuDamage");
             let a = document.getElementsByClassName("atkDamage");
             let s = document.getElementsByClassName("zyozefuSatus");
+            let hh = document.getElementsByClassName("heelAfterHp");
+            let hs = document.getElementsByClassName("heelAfterSatus");
 
             if(frontHp>backHp){
                 c[0].textContent = "0";
@@ -149,11 +152,21 @@
                 a[0].textContent = atkDamage.toFixed(2);
             }
 
-
             if (atkDamage <= 2.0) {
                 s[0].textContent = "生存";
             } else {
                 s[0].textContent = "ダウン";
+            }
+            
+            if(zyozefuDamage > 1.0){
+                heelAfterHp = zyozefuDamage - 1.0 + 1.5;
+                hh[0].textContent = "写真崩壊後回復して殴られた場合のhp：" + heelAfterHp;
+
+                if (heelAfterHp <= 2.0) {
+                    hs[0].textContent = "状況：生存";
+                } else {
+                    hs[0].textContent = "状況：ダウン";
+                }
             }
         }
     </script>
