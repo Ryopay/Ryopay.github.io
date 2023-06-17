@@ -33,7 +33,7 @@
         <div class="collapseDamage"></div>
     </div>
     <div style="display: flex;">
-        <div>写真崩壊時の体力:</div>
+        <div>写真崩壊後の体力:</div>
         <div class="zyozefuDamage"></div>
     </div>
     <div style="display: flex;">
@@ -174,6 +174,10 @@
                 } else {
                     hs[0].textContent = "状況：ダウン";
                 }
+            }else{                
+                hh[0].textContent = "";
+                hd[0].textContent = "";
+                hs[0].textContent = "";
             }
         }
     </script>
