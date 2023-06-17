@@ -19,6 +19,29 @@
         <div>状況：</div>
         <div class="status"></div>
     </div>
+    <div>表世界の体力</div>
+    <input id="frontHp" type="text" onchange="frontHpInput()" />
+    <div>裏世界の体力</div>
+    <input id="backHp" type="text" onchange="backHpInput()" />
+    <button onclick="handleButtonZyozefu()">結果表示</button>
+    <div style="display: flex;">
+        <div>写真崩壊で増えるダメージ：
+        </div>
+        <div class="collapseDamage"></div>
+    </div>
+    <div style="display: flex;">
+        <div>写真崩壊時の体力:</div>
+        <div class="zyozefuDamage"></div>
+    </div>
+    <div style="display: flex;">
+        <div>殴られた場合のhp：</div>
+        <div class="atkDamage"></div>
+    </div>
+    <div style="display: flex;">
+        <div>状況：</div>
+        <div class="zyozefuSatus"></div>
+    </div>
+    
     <style>
         @media only screen and (device-width: 390px){
             body {
@@ -49,19 +72,28 @@
         }
     </style>
     <script>
+        //隠者用
         let hp = 0.0;
         let num = 0;
         let damage = 0.0;
         let afterHp = 0.0;
+        
+        //ジョゼフ用
+        let frontHp = 0.0;
+        let backHp = 0.0;
+        let collapseDamage = 0.0; 
+        let zyozefuDamage = 0.0;
+        let atkDamage = 0.0;
 
+        //隠者用
         function hpInput() {
             let input = document.getElementById("hpInput");
             hp = parseFloat(input.value);
         }
 
-        function numInput() {
+        function backHpInput() {
             let input = document.getElementById("numInput");
-            num = parseInt(input.value);
+            num = parseInt(input.value);           
         }
 
         function handleButtonInzya() {
@@ -73,6 +105,46 @@
             afterHp = hp + damage;
             a[0].textContent = afterHp.toFixed(1);
             if (afterHp <= 2.0) {
+                s[0].textContent = "生存";
+            } else {
+                s[0].textContent = "ダウン";
+            }
+        }
+        
+
+        //ジョゼフ用
+        function frontHpInput() {
+            let input = document.getElementById("frontHp");
+            frontHp = parseFloat(input.value);
+        }
+
+        function numInput() {
+            let input = document.getElementById("backHp");
+            backHp = parseInt(input.value);           
+        }
+
+        function handleButtonInzya() {
+            let c = document.getElementsByClassName("collapseDamage");
+            let d = document.getElementsByClassName("zyozefuDamage");
+            let a = document.getElementsByClassName("atkDamage");
+            let s = document.getElementsByClassName("zyozefuSatus");
+
+            if(frontHp>backHp){
+                c[0].textContent = "0";
+                d[0].textContent = frontHp.toFixed(2);
+                atkDamage = frontHp + 1.50;
+                a[0].textContent = atkDamage.toFixed(2);
+            }else{
+                collapseDamage = (backHp - frontHp) / 2;
+                c[0].textContent = collapseDamage;
+                zyozefuDamage = frontHp + collapseDamage;
+                d[0].textContent = zyozefuDamage.toFixed(2);
+                atkDamage = zyozefuDamage + 1.50;
+                a[0].textContent = atkDamage.toFixed(2);
+            }
+
+
+            if (atkDamage <= 2.0) {
                 s[0].textContent = "生存";
             } else {
                 s[0].textContent = "ダウン";
