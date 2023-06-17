@@ -142,9 +142,11 @@
             let hs = document.getElementsByClassName("heelAfterSatus");
 
             if(frontHp>backHp){
-                c[0].textContent = "0";
-                d[0].textContent = frontHp;
-                atkDamage = frontHp + 1.50;
+                collapseDamage = 0.0;
+                c[0].textContent = collapseDamage;
+                zyozefuDamage = frontHp + collapseDamage;
+                d[0].textContent = zyozefuDamage;
+                atkDamage = zyozefuDamage + 1.50;
                 a[0].textContent = atkDamage;
             }else{
                 collapseDamage = (backHp - frontHp) / 2;
