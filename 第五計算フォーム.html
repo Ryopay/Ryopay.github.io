@@ -1,6 +1,6 @@
 <html>
 <body style="margin-top: 20px;">
-    <div style="font-size: 80px; font-weight: bold;">・隠者ダメージ計算</div>
+    <div class="index" style="font-size: large; font-weight: bold;">・隠者ダメージ計算</div>
     <div>現在の体力</div>
 
     <input id="hpInput" type="text" onchange="hpInput()" />
@@ -19,6 +19,8 @@
         <div>状況：</div>
         <div class="status"></div>
     </div>
+    
+    <div class="index" style="font-size: large; font-weight: bold;">・ジョゼフ写真崩壊ダメージ計算</div>
     <div>表世界の体力</div>
     <input id="frontHp" type="text" onchange="frontHpInput()" />
     <div>裏世界の体力</div>
@@ -46,6 +48,10 @@
         @media only screen and (device-width: 390px){
             body {
                 margin-top: 40px;
+            }
+
+            .index{
+                font-size: 65px;
             }
 
             div {
